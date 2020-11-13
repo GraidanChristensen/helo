@@ -1,25 +1,38 @@
-const controller = require('./controller');
 require('dotenv').config();
-const express = require('express');
-// const session = require('express-session');
-const massive = require('massive')
 
-const PORT = 4000;
+const express = require('express');
+const massive = require('massive');
+const session = require('express-session');
+
+const {SESSION_SECRET, SERVER_PORT, CONNECTION_STRING} = process.env;
+const auth = require('./controller');
 
 const app = express();
 
 app.use(express.json());
 
-const {CONNECTION_STRING} = process.env;
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: SESSION_SECRET,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24
+    }
+}))
 
 massive({
     connectionString: CONNECTION_STRING,
-    ssl: {rejectUnauthorized: false}
-}).then(db => {
-    app.set('db', db);
-    console.log("connected to database");
-}).catch(err => console.log(err));
+    ssl: {
+        rejectUnauthorized: false
+    }
+}).then( db => {
+    app.set('db', db)
+    console.log('connected to db')
+}).catch( err => console.log(err));
+
+//auth endpoints
+app.post('/auth/register', auth.register);
+app.post('/auth/login', auth.login);
 
 
-
-app.listen(PORT, ()=>console.log(`Listening on ${PORT}`));
+app.listen(SERVER_PORT, ()=>console.log(`Listening on ${SERVER_PORT}`));
