@@ -30,7 +30,11 @@ module.exports = {
 
         const authenticated = bcyrpt.compareSync(password, user.password);
         if(authenticated){
-            return res.status(200).send("Success");
+            return res.status(200).send({
+                id: user.id,
+                username: user.username,
+                picture: ""
+            });
         }
         else {
             res.status(401).send("Incorrect login info");
