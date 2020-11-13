@@ -1,0 +1,32 @@
+body{
+    width: 100%;
+    height: 100vh;
+    background-color: #FF9770;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginBox{
+    width: 500px;
+    height: 450px;
+    background-color: #FFD670;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.username{
+    display: flex;
+    width: 500px;
+    align-items: center;
+    justify-content: center;
+}
+
+.password{
+    display: flex;
+    width: 500px;
+    align-items: center;
+    justify-content: center;
+}

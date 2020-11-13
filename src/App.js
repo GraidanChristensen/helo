@@ -12,7 +12,7 @@ class App extends Component{
     render(){
         return(
             <div>
-                {this.props.location.pathname !== '/'? <Nav /> : <div></div>}
+                {this.props.location.pathname !== '/'? <Nav classname="Nav"/> : <div></div>}
             
                 {routes}
             </div>

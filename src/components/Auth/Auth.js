@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {getUserData} from '../../redux/reducer';
+import './Auth.css';
 
 class Auth extends Component{
     constructor(){
@@ -52,18 +53,21 @@ class Auth extends Component{
 
     render(){
         return(
-            <div>
-                <div>
-                <h5>Username:</h5>
-                <input onChange={this.handleUsername} type='text'/>
-
-                <h5>Password: </h5>
-                <input onChange={this.handlePassword} type='text'/>
+            <div className='loginBox'>
+                <div className = 'username'>
+                    <h5>Username: </h5>
+                    <input onChange={this.handleUsername} type='text'/>
                 </div>
 
-                <button onClick={this.login}>Login</button>
-                <button onClick={this.registerUser}>Register</button>
+                <div className='password'>
+                    <h5>Password: </h5>
+                    <input onChange={this.handlePassword} type='text'/>
+                </div>
 
+                <div className='buttons'>
+                    <button onClick={this.login}>Login</button>
+                    <button onClick={this.registerUser}>Register</button>
+                </div>
             </div>
         )
     }
