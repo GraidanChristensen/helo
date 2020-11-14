@@ -53,20 +53,23 @@ class Auth extends Component{
 
     render(){
         return(
-            <div className='loginBox'>
-                <div className = 'username'>
-                    <h5>Username: </h5>
-                    <input onChange={this.handleUsername} type='text'/>
-                </div>
+            <div className='authBody'>
+                <div className='loginBox'>
+                    <h1>Helo</h1>
+                    <div className = 'username'>
+                        <h5>Username   </h5>
+                        <input onChange={this.handleUsername} type='text'/>
+                    </div>
 
-                <div className='password'>
-                    <h5>Password: </h5>
-                    <input onChange={this.handlePassword} type='text'/>
-                </div>
+                    <div className='password'>
+                        <h5>Password   </h5>
+                        <input onChange={this.handlePassword} type='text'/>
+                    </div>
 
-                <div className='buttons'>
-                    <button onClick={this.login}>Login</button>
-                    <button onClick={this.registerUser}>Register</button>
+                    <div className='buttons'>
+                        <button onClick={this.login} className='loginButoon'>Login</button>
+                        <button onClick={this.registerUser} className='registerButton'>Register</button>
+                    </div>
                 </div>
             </div>
         )

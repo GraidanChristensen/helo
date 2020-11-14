@@ -1,0 +1,31 @@
+.navBar{
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(#FF9770, #FF70A6);
+    padding: 30px;
+    justify-content: space-between;
+}
+
+.navBar h5{
+    color: white;
+    font-size: 35;
+}
+
+.navButton{
+    text-decoration: none;
+    color: white;
+}
+
+.navBar button{
+    background-color: #403D39;
+    width: 75px;
+    height: 30px;
+    border: none;
+}
+
+.topNavBar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+}

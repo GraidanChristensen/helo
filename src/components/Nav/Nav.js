@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import './Nav.css';
 
 class Nav extends Component{
+
     render(){
             return(
-                <div>
-                    <h5>{`Username: ${this.props.username}`}</h5>
-                    <button><Link to="/dashboard">Home</Link></button>
-                    <button><Link to="/new">New Post</Link></button>
-                    <button><Link to="/">Logout</Link></button>
-                    {console.log(this.props)}
+                <div className="navBar">
+                    <div className="topNavBar">
+                        <h5>{`Username: ${this.props.username}`}</h5>
+                        <button><Link className="navButton" to="/dashboard">Home</Link></button>
+                        <button><Link className="navButton" to="/new">New Post</Link></button>
+                    </div>
+                    <button><Link className="navButton" to="/">Logout</Link></button>
                 </div>
             )
         }
