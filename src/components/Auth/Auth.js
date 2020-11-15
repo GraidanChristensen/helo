@@ -63,7 +63,7 @@ class Auth extends Component{
 
                     <div className='password'>
                         <h5>Password   </h5>
-                        <input onChange={this.handlePassword} type='text'/>
+                        <input onChange={this.handlePassword} type='password'/>
                     </div>
 
                     <div className='buttons'>

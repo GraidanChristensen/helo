@@ -9,9 +9,12 @@ class Nav extends Component{
             return(
                 <div className="navBar">
                     <div className="topNavBar">
-                        <h5>{`Username: ${this.props.username}`}</h5>
-                        <button><Link className="navButton" to="/dashboard">Home</Link></button>
-                        <button><Link className="navButton" to="/new">New Post</Link></button>
+                        <div className='profile'>
+                            <img src={this.props.picture}/>
+                            <h5>{this.props.username}</h5>
+                        </div>
+                            <button><Link className="navButton" to="/dashboard">Home</Link></button>
+                            <button><Link className="navButton" to="/new">New Post</Link></button>
                     </div>
                     <button><Link className="navButton" to="/">Logout</Link></button>
                 </div>
