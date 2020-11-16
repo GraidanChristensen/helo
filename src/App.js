@@ -13,9 +13,9 @@ class App extends Component{
         return(
             <div className={this.props.location.pathname !== '/'? 'main': null}>
                 {this.props.location.pathname !== '/'? <Nav /> : <div></div>}
-                <div >
+                {/* <div > */}
                     {routes}
-                </div>
+                {/* </div> */}
             </div>
         )
     }

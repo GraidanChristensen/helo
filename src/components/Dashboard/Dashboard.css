@@ -1,4 +1,65 @@
 .dash{
-    width: 100vw;
     height: 100vh;
+    display: flex;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.search{
+    background-color: white;
+    height: 50px;
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    border: 1px solid gray;
+}
+
+.search input{
+    margin-left: 10px;
+    height: 20px;
+}
+
+.search button{
+    background-color: #403D39;
+    height: 25px;
+    border: none;
+    color: white;
+    border: 1px solid white;
+}
+
+.checkbox{
+    display: flex;
+    align-items: center;
+}
+
+.posts{
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    margin-top: 20px;
+    border: 1px solid grey;
+}
+
+.posts h1{
+    margin-left: 15px;
+    font-size: 25px;
+}
+
+.posts img{
+    height: 50px;
+    border: 1px solid grey;
+    border-radius: 50%;
+}
+
+.rightSidePosts{
+    display: flex;
+    width: 125px;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 10px;
 }
