@@ -33,6 +33,6 @@ massive({
 //auth endpoints
 app.post('/auth/register', auth.register);
 app.post('/auth/login', auth.login);
-
+app.get('/dashboard/posts/:id', auth.getPosts);
 
 app.listen(SERVER_PORT, ()=>console.log(`Listening on ${SERVER_PORT}`));

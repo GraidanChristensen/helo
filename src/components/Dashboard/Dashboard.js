@@ -22,7 +22,9 @@ class Dashboard extends Component{
                 title: "sponge",
                 author: 'graidan',
                 authors_picture: "https://robohash.org/graidan.png"
-            }]
+            }],
+
+            myPosts: true
         }
     }
 
@@ -52,7 +54,7 @@ class Dashboard extends Component{
                         <button>Search</button>
                         <button>Reset</button>
                     </div>
-                    <div className='checkbox' defaultValue='checked'>
+                    <div className='checkbox'>
                         <h5>My Post </h5>
                         <input type='checkbox'/>
                     </div>
