@@ -1,8 +1,7 @@
-// search input is saved to state. 
-// checkbox has no function
-// created sql posts but haven't done anything with them.
-
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import axios from 'axios';
+
 import './Dashboard.css'
 class Dashboard extends Component{
     constructor(){
@@ -10,20 +9,7 @@ class Dashboard extends Component{
 
         this.state = {
             searchInput: "",
-            posts: [{
-                id: 1, 
-                title: "squid",
-                author: 'graidan',
-                authors_picture: "https://robohash.org/graidan.png"
-
-            },
-            {
-                id: 2, 
-                title: "sponge",
-                author: 'graidan',
-                authors_picture: "https://robohash.org/graidan.png"
-            }],
-
+            posts: [],
             myPosts: true
         }
     }
@@ -33,15 +19,59 @@ class Dashboard extends Component{
             searchInput: e.target.value
         })
     }
+    
+    handleSearch = () => {
+        this.getPosts();
+    }
+
+    handleReset = () => {
+        this.setState({
+            searchInput: ""
+        })
+
+        this.getPosts();
+    }
+
+    toggleMyPosts = () => {
+        this.setState({
+            myPosts: !this.state.myPosts
+        })
+
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if(prevState.myPosts !== this.state.myPosts){
+            this.getPosts();
+        }
+    }
+
+    componentDidMount(){
+        this.getPosts();
+    }
+
+    getPosts = async () => {
+       
+        try{
+            const posts = await axios.get(`/dashboard/posts/${this.props.id}?search=${this.state.searchInput}&userposts=${this.state.myPosts}`)
+            this.setState({
+                posts: posts.data
+            });
+        }
+        catch(err){
+            alert(err)
+        }
+    }
+
+
 
     render(){
         const mappedPosts = this.state.posts.map((post, index) => {
             return( 
-                    <div key={post.id} className='posts'>
+                    <div key={index} className='posts'>
                         <h1>{post.title}</h1>
                         <div className='rightSidePosts'>
-                            <h5>{post.author}</h5>
-                            <img alt='profile picture' src={post.authors_picture}/>
+                            <h5>{post.username}</h5>
+                            <img alt='profile' src={post.picture}/>
                         </div>
                     </div>
             )
@@ -50,13 +80,13 @@ class Dashboard extends Component{
             <div className='dash'> 
                 <div className='search'>
                     <div className='searchBar'>
-                        <input onChange={this.handleSearchInput} type='text' placeholder='Search by Title...'/>
-                        <button>Search</button>
-                        <button>Reset</button>
+                        <input onChange={this.handleSearchInput} type='text' placeholder='Search by Title...' value={this.state.searchInput}/>
+                        <button onClick={this.handleSearch}>Search</button>
+                        <button onClick={this.handleReset}>Reset</button>
                     </div>
                     <div className='checkbox'>
                         <h5>My Post </h5>
-                        <input type='checkbox'/>
+                        <input type='checkbox' checked={this.state.myPosts} onChange={this.toggleMyPosts}/>
                     </div>
                 </div>
 
@@ -68,4 +98,9 @@ class Dashboard extends Component{
     }
 }
 
-export default Dashboard;
+function mapStateToProps(state){
+    return{
+        id: state.id,
+    }
+}
+export default connect(mapStateToProps)(Dashboard);
