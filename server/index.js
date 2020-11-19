@@ -35,5 +35,6 @@ app.post('/auth/register', auth.register);
 app.post('/auth/login', auth.login);
 app.get('/dashboard/posts/:id', auth.getPosts);
 app.get('/post/:id', auth.getPost);
+app.post('/form/:id', auth.addPost);
 
 app.listen(SERVER_PORT, ()=>console.log(`Listening on ${SERVER_PORT}`));

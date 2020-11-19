@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import './Form.css'
@@ -26,6 +27,17 @@ class Form extends Component{
         })
     }
 
+    addPost = () => {
+        try{
+          axios.post(`/form/${this.props.id}`, this.state);
+          this.props.history.push('/dashboard')
+        }
+        catch(err){
+            alert(err);
+        }
+
+    }
+
     render(){
         return(
             <div className='Form'>
@@ -41,8 +53,7 @@ class Form extends Component{
                         <input name="content" onChange={this.handleChange}></input>
 
                     </div>
-                    <button>Post</button>
-                    {console.log(this.props.id)}
+                    <button onClick={this.addPost}>Post</button>
                 </div>
             </div>
         )

@@ -84,5 +84,14 @@ module.exports = {
 
         const post = await db.get_post([id]);
         return res.status(200).send(post);
-    } 
+    },
+    
+    addPost: async (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params;
+        const {title, image, content} = req.body;
+
+        const newPost = await db.add_post([title, content, image, id]);
+        return res.status(200).send(newPost);
+    }
 }
