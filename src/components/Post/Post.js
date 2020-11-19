@@ -23,7 +23,6 @@ class Post extends Component{
         console.log(this.props.match.params.postid)
         try{
             const post = await axios.get(`/post/${this.props.match.params.postid}`)
-            console.log(post.data[0]);
             this.setState({
                 title: post.data[0].title,
                 image: post.data[0].postpicture,

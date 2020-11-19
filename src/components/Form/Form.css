@@ -1,4 +1,47 @@
 .Form{
     width: 100vw;
     height: 100vh;
+    margin-top: 50px;
+}
+
+.newPost{
+    margin: auto;
+    width: 600px;
+    background-color: white;
+    padding: 20px;
+    padding-bottom: 50px;
+}
+
+.newPost h1{
+    color: #FF9770;
+}
+
+.newPostContent{
+    display: flex;
+    flex-direction: column;
+}
+
+.newPostContent h5{
+    margin: 5px;
+}
+
+.newPostContent input{
+    margin-bottom: 20px;
+}
+
+.newPostContent img{
+    margin: auto;
+    height: 300px;
+    max-width: 500px;
+    background-color: white;
+}
+
+
+.newPost button{
+    background-color: #403D39;
+    width: 75px;
+    height: 30px;
+    border: none;
+    color: white;
+    float: right;
 }
