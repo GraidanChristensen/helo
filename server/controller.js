@@ -52,10 +52,8 @@ module.exports = {
             const {userposts, search} = req.query;
        
 
-            console.log(id, search, userposts);
             //if userposts = true && a search get all posts where title contains search
             if(userposts === 'true' && search){
-                console.log("hit");
                 const posts = await db.get_search_and_usersposts([search])
                 console.log(posts);
                     return res.status(200).send(posts);
@@ -78,5 +76,13 @@ module.exports = {
                 const posts = await db.get_all_posts();
                 return res.status(200).send(posts);
             }
-    }
+    },
+
+    getPost: async (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params;
+
+        const post = await db.get_post([id]);
+        return res.status(200).send(post);
+    } 
 }

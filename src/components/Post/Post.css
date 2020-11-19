@@ -1,4 +1,47 @@
 .Post{
     width: 100vw;
     height: 100vh;
+    margin-top: 50px;
+}
+
+.content{
+    margin: auto;
+    width: 600px;
+    background-color: white;
+    padding-bottom: 10px;
+}
+
+.postTitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.postTitle h1{
+    color: #FF9770;
+}
+
+.postTitleProfile{
+    width: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.postTitle img{
+    height: 50px;
+    border: 1px solid grey;
+    border-radius: 50%;
+}
+
+.postContent{
+    display: flex;
+    margin: 20px;
+}
+
+.postContent img{
+    width: 250px;
+    margin-right: 20px;
 }

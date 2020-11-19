@@ -34,5 +34,6 @@ massive({
 app.post('/auth/register', auth.register);
 app.post('/auth/login', auth.login);
 app.get('/dashboard/posts/:id', auth.getPosts);
+app.get('/dashboard/post/:id', auth.getPost);
 
 app.listen(SERVER_PORT, ()=>console.log(`Listening on ${SERVER_PORT}`));
