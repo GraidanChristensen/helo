@@ -43,6 +43,8 @@
     background-color: white;
     margin-top: 20px;
     border: 1px solid grey;
+    text-decoration: none;
+    color: black;
 }
 
 .posts h1{

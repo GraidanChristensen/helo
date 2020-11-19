@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import './Post.css'
 
@@ -6,13 +7,36 @@ class Post extends Component{
         super();
         
         this.state={
-            title: "Squid",
-            image: "https://i.kym-cdn.com/entries/icons/facebook/000/003/047/omg.jpg",
-            content: "Nice looking fella",
-            username: "graidan",
-            profilePicture: "https://robohash.org/185.39.11.105.png"
+            title: "",
+            image: "",
+            content: "",
+            username: "",
+            profilePicture: ""
         }
     }
+
+    componentDidMount(){
+        this.getPost();
+    }
+
+    getPost = async () => {
+        console.log(this.props.match.params.postid)
+        try{
+            const post = await axios.get(`/post/${this.props.match.params.postid}`)
+            console.log(post.data[0]);
+            this.setState({
+                title: post.data[0].title,
+                image: post.data[0].postpicture,
+                content: post.data[0].content,
+                username: post.data[0].username,
+                profilePicture: post.data[0].picture
+            });
+        }
+        catch(err){
+            alert(err);
+        }
+    }
+
     render(){
         return(
             <div className="Post">
@@ -28,7 +52,6 @@ class Post extends Component{
                         <img alt="Post" src={this.state.image}/>
                         <p>{this.state.content}</p>
                     </div>
-
                 </div>
             </div>
         )
