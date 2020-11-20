@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import './Post.css'
 
 class Post extends Component{
@@ -11,7 +12,8 @@ class Post extends Component{
             image: "",
             content: "",
             username: "",
-            profilePicture: ""
+            profilePicture: "",
+            userId: null
         }
     }
 
@@ -20,7 +22,6 @@ class Post extends Component{
     }
 
     getPost = async () => {
-        console.log(this.props.match.params.postid)
         try{
             const post = await axios.get(`/post/${this.props.match.params.postid}`)
             this.setState({
@@ -28,8 +29,19 @@ class Post extends Component{
                 image: post.data[0].postpicture,
                 content: post.data[0].content,
                 username: post.data[0].username,
-                profilePicture: post.data[0].picture
+                profilePicture: post.data[0].picture,
+                userId: post.data[0].id
             });
+        }
+        catch(err){
+            alert(err);
+        }
+    }
+
+    deletePost = async () => {
+        try{
+            axios.delete(`/post/delete/${this.props.match.params.postid}`);
+            this.props.history.push('/dashboard')
         }
         catch(err){
             alert(err);
@@ -51,10 +63,17 @@ class Post extends Component{
                         <img alt="Post" src={this.state.image}/>
                         <p>{this.state.content}</p>
                     </div>
+                    {this.props.id === this.state.userId ? 
+                    <button onClick={this.deletePost}>Delete</button>: ""}
                 </div>
             </div>
         )
     }
 }
 
-export default Post;
+function mapStateToProps(state){
+    return{
+        id: state.id,
+    }
+}
+export default connect(mapStateToProps)(Post);

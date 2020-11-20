@@ -8,7 +8,7 @@
     margin: auto;
     width: 600px;
     background-color: white;
-    padding-bottom: 10px;
+    padding-bottom: 50px;
 }
 
 .postTitle{
@@ -44,4 +44,14 @@
 .postContent img{
     width: 250px;
     margin-right: 20px;
+}
+
+.content button{
+    float: right;
+    margin-right: 20px;
+    background-color: #403D39;
+    width: 75px;
+    height: 30px;
+    border: none;
+    color: white;
 }

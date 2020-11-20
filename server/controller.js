@@ -93,5 +93,13 @@ module.exports = {
 
         const newPost = await db.add_post([title, content, image, id]);
         return res.status(200).send(newPost);
+    },
+
+    deletePost: async (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params;
+
+        await db.delete_post([id]);
+        return res.status(200);
     }
 }

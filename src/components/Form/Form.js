@@ -28,6 +28,10 @@ class Form extends Component{
     }
 
     addPost = () => {
+        if(!this.props.id){
+            alert("You need to login to create a post")
+        }
+        
         try{
           axios.post(`/form/${this.props.id}`, this.state);
           this.props.history.push('/dashboard')
