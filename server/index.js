@@ -33,9 +33,11 @@ massive({
 //auth endpoints
 app.post('/auth/register', auth.register);
 app.post('/auth/login', auth.login);
-app.get('/dashboard/posts/:id', auth.getPosts);
+app.get('/dashboard/posts', auth.getPosts);
 app.get('/post/:id', auth.getPost);
-app.post('/form/:id', auth.addPost);
+app.post('/form', auth.addPost);
 app.delete('/post/delete/:id', auth.deletePost);
+app.post('/api/auth/logout', auth.logout);
+app.get('/api/auth/me', auth.getMe);
 
 app.listen(SERVER_PORT, ()=>console.log(`Listening on ${SERVER_PORT}`));

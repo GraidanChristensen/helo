@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
@@ -53,13 +52,13 @@ class Dashboard extends Component{
     getPosts = async () => {
        
         try{
-            const posts = await axios.get(`/dashboard/posts/${this.props.id}?search=${this.state.searchInput}&userposts=${this.state.myPosts}`)
+            const posts = await axios.get(`/dashboard/posts?search=${this.state.searchInput}&userposts=${this.state.myPosts}`)
             this.setState({
                 posts: posts.data
             });
         }
         catch(err){
-            alert(err)
+            console.log(err);
         }
     }
 
@@ -101,9 +100,5 @@ class Dashboard extends Component{
     }
 }
 
-function mapStateToProps(state){
-    return{
-        id: state.id,
-    }
-}
-export default connect(mapStateToProps)(Dashboard);
+
+export default Dashboard;

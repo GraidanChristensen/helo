@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 import './Form.css'
 class Form extends Component{
     constructor(){
@@ -28,12 +27,8 @@ class Form extends Component{
     }
 
     addPost = () => {
-        if(!this.props.id){
-            alert("You need to login to create a post")
-        }
-        
         try{
-          axios.post(`/form/${this.props.id}`, this.state);
+          axios.post(`/form`, this.state);
           this.props.history.push('/dashboard')
         }
         catch(err){
@@ -70,4 +65,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(Form);
+export default Form;

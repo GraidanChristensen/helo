@@ -14,6 +14,9 @@ module.exports = {
         const salt = bcyrpt.genSaltSync(10);
         const hashedPassword = bcyrpt.hashSync(password, salt);
         const [newUser] = await db.register_user([username, hashedPassword, picture]);
+        req.session.userid = {
+            userid: newUser.id
+        }
         res.status(200).send({
             id: newUser.id,
             username: newUser.username,
@@ -35,6 +38,10 @@ module.exports = {
 
         const authenticated = bcyrpt.compareSync(password, user.password);
         if(authenticated){
+            req.session.userid = {
+                userid: user.id
+            }
+
             return res.status(200).send({
                 id: user.id,
                 username: user.username,
@@ -48,14 +55,13 @@ module.exports = {
 
     getPosts: async (req, res) => {
             const db = req.app.get('db');
-            const {id} = req.params;
+            const {userid} = req.session.userid;
             const {userposts, search} = req.query;
-       
-
+            const id = userid;
+          
             //if userposts = true && a search get all posts where title contains search
             if(userposts === 'true' && search){
                 const posts = await db.get_search_and_usersposts([search])
-                console.log(posts);
                     return res.status(200).send(posts);
             }
 
@@ -88,8 +94,9 @@ module.exports = {
     
     addPost: async (req, res) => {
         const db = req.app.get('db');
-        const {id} = req.params;
+        const {userid} = req.session.userid;
         const {title, image, content} = req.body;
+        const id = userid;
 
         const newPost = await db.add_post([title, content, image, id]);
         return res.status(200).send(newPost);
@@ -98,8 +105,28 @@ module.exports = {
     deletePost: async (req, res) => {
         const db = req.app.get('db');
         const {id} = req.params;
+        const {userid} = req.session.userid;
+        const post = await db.get_post([id]);
 
-        await db.delete_post([id]);
-        return res.status(200);
+        if(userid != post[0].id){
+            return res.status(401).send("You can only delete posts you created.")
+        }
+        else{
+            await db.delete_post([id]);
+            return res.status(200).send("Deleted");
+        }
+    },
+
+    logout: async (req,res) => {
+        req.session.destroy();
+        res.sendStatus(200);
+    },
+
+    getMe: async (req, res) => {
+        const {userid} = req.session.userid;
+        const db = req.app.get('db');
+
+        const me = await db.get_me([userid]);
+        return res.status(200).send(me);
     }
 }

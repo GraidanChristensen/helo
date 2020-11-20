@@ -40,7 +40,10 @@ class Post extends Component{
 
     deletePost = async () => {
         try{
-            axios.delete(`/post/delete/${this.props.match.params.postid}`);
+            const response = axios.delete(`/post/delete/${this.props.match.params.postid}`);
+            if (response === "You can only delete posts you created."){
+                alert(response);
+            }
             this.props.history.push('/dashboard')
         }
         catch(err){
@@ -63,8 +66,7 @@ class Post extends Component{
                         <img alt="Post" src={this.state.image}/>
                         <p>{this.state.content}</p>
                     </div>
-                    {this.props.id === this.state.userId ? 
-                    <button onClick={this.deletePost}>Delete</button>: ""}
+                    <button onClick={this.deletePost}>Delete</button>
                 </div>
             </div>
         )
